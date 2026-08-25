@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>JobTrack | Track Your Career</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+
+    <div class="logo">
+        Job<span>Track</span>
+    </div>
+
+    <button
+        type="button"
+        class="menu-toggle"
+        id="menu-toggle"
+        aria-label="Toggle navigation"
+    >
+        ☰
+    </button>
+
+    <div class="nav-links" id="nav-links">
+
+        <a href="{{ url_for('dashboard') }}">
+            Dashboard
+        </a>
+
+        <a href="{{ url_for('applications') }}">
+            Applications
+        </a>
+
+        <a href="{{ url_for('logout') }}" class="login-btn">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+    <!-- Hero Section -->
+    <main class="hero">
+      <div class="hero-content">
+        <p class="badge">🚀 Your Career, Organized</p>
+
+        <h1>
+          Track Every Job.
+          <span>Land Your Dream.</span>
+        </h1>
+
+        <p class="hero-description">
+          Manage your job applications, track interviews, monitor your progress,
+          and take control of your job search — all in one place.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#" class="primary-btn"> Get Started </a>
+
+          <a href="#" class="secondary-btn"> Learn More </a>
+        </div>
+      </div>
+
+      <!-- Dashboard Preview -->
+      <div class="dashboard-preview">
+        <div class="preview-header">
+          <h3>Dashboard</h3>
+          <span>JobTrack</span>
+        </div>
+
+        <div class="stats">
+          <div class="stat-card">
+            <p>Total Applications</p>
+            <h2>24</h2>
+          </div>
+
+          <div class="stat-card">
+            <p>Interviews</p>
+            <h2>6</h2>
+          </div>
+
+          <div class="stat-card">
+            <p>Selected</p>
+            <h2>2</h2>
+          </div>
+        </div>
+
+        <div class="application-preview">
+          <div>
+            <strong>Python Developer</strong>
+            <p>Tech Company</p>
+          </div>
+
+          <span class="status applied"> Applied </span>
+        </div>
+
+        <div class="application-preview">
+          <div>
+            <strong>Backend Developer</strong>
+            <p>Software Company</p>
+          </div>
+
+          <span class="status interview"> Interview </span>
+        </div>
+      </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  </body>
+</html>

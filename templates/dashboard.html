@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | JobTrack</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+    <div class="logo">
+        Job<span>Track</span>
+    </div>
+
+    <button
+        type="button"
+        class="menu-toggle"
+        id="menu-toggle"
+        aria-label="Toggle navigation"
+    >
+        ☰
+    </button>
+
+    <div class="nav-links" id="nav-links">
+
+        <a href="{{ url_for('dashboard') }}">
+            Dashboard
+        </a>
+
+        <a href="{{ url_for('applications') }}">
+            Applications
+        </a>
+
+        <a href="{{ url_for('logout') }}" class="login-btn">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+    <main class="dashboard-page">
+
+        <div class="dashboard-heading">
+
+            <div>
+                <h1>Dashboard</h1>
+
+                <p>
+                    Track and manage your job applications.
+                </p>
+            </div>
+
+            <a href="{{ url_for('add_application') }}" class="primary-btn">
+    + Add Application
+</a>
+
+        </div>
+
+
+        <div class="dashboard-stats">
+
+            <div class="dashboard-card">
+                <p>Total Applications</p>
+                <h2>{{ total_applications }}</h2>
+            </div>
+
+            <div class="dashboard-card">
+                <p>Interviews</p>
+                <h2>{{ interviews }}</h2>
+            </div>
+
+            <div class="dashboard-card">
+                <p>Selected</p>
+                <h2>{{ selected }}</h2>
+            </div>
+
+            <div class="dashboard-card">
+                <p>Rejected</p>
+                <h2>{{ rejected }}</h2>
+            </div>
+
+        </div>
+        <div class="recent-section">
+
+    <div class="section-header">
+
+        <div>
+            <h2>Recent Applications</h2>
+
+            <p>Your latest job applications</p>
+        </div>
+
+        <a href="{{ url_for('applications') }}"
+           class="secondary-btn">
+            View All
+        </a>
+
+    </div>
+
+
+    {% if recent_applications %}
+
+        <div class="recent-list">
+
+            {% for application in recent_applications %}
+
+                <div class="recent-application">
+
+                    <div class="recent-info">
+
+                        <h3>
+                            {{ application.role }}
+                        </h3>
+
+                        <p>
+                            {{ application.company }}
+                        </p>
+
+                        {% if application.location %}
+                            <small>
+                                {{ application.location }}
+                            </small>
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="recent-status">
+
+                        <span class="status {{ application.status|lower }}">
+                            {{ application.status }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="empty-state">
+
+            <h2>No Applications Yet</h2>
+
+            <p>
+                Start tracking your job applications.
+            </p>
+
+            <a
+                href="{{ url_for('add_application') }}"
+                class="primary-btn"
+            >
+                Add Application
+            </a>
+            <div class="recent-section">
+
+    <div class="section-header">
+
+        <div>
+            <h2>Recent Applications</h2>
+
+            <p>Your latest job applications</p>
+        </div>
+
+        <a href="{{ url_for('applications') }}"
+           class="secondary-btn">
+            View All
+        </a>
+
+    </div>
+
+
+    {% if recent_applications %}
+
+        <div class="recent-list">
+
+            {% for application in recent_applications %}
+
+                <div class="recent-application">
+
+                    <div class="recent-info">
+
+                        <h3>
+                            {{ application.role }}
+                        </h3>
+
+                        <p>
+                            {{ application.company }}
+                        </p>
+
+                        {% if application.location %}
+                            <small>
+                                {{ application.location }}
+                            </small>
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="recent-status">
+
+                        <span class="status {{ application.status|lower }}">
+                            {{ application.status }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="empty-state">
+
+            <h2>No Applications Yet</h2>
+
+            <p>
+                Start tracking your job applications.
+            </p>
+
+            <a
+                href="{{ url_for('add_application') }}"
+                class="primary-btn"
+            >
+                Add Application
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+        </div>
+
+    {% endif %}
+
+</div>
+<div class="status-overview">
+
+    <div class="section-header">
+
+        <div>
+            <h2>Application Status</h2>
+            <p>Overview of your application progress</p>
+        </div>
+
+    </div>
+
+
+    <div class="status-item">
+
+        <div class="status-label">
+            <span>Applied</span>
+            <strong>{{ applied }}</strong>
+        </div>
+
+        <div class="progress-bar">
+            <div
+                class="progress-fill applied-bar"
+                style="width: {% if total_applications > 0 %}{{ (applied / total_applications * 100)|round }}%{% else %}0%{% endif %};"
+            ></div>
+        </div>
+
+    </div>
+
+
+    <div class="status-item">
+
+        <div class="status-label">
+            <span>Assessment</span>
+            <strong>{{ assessments }}</strong>
+        </div>
+
+        <div class="progress-bar">
+            <div
+                class="progress-fill assessment-bar"
+                style="width: {% if total_applications > 0 %}{{ (assessments / total_applications * 100)|round }}%{% else %}0%{% endif %};"
+            ></div>
+        </div>
+
+    </div>
+
+
+    <div class="status-item">
+
+        <div class="status-label">
+            <span>Interview</span>
+            <strong>{{ interviews }}</strong>
+        </div>
+
+        <div class="progress-bar">
+            <div
+                class="progress-fill interview-bar"
+                style="width: {% if total_applications > 0 %}{{ (interviews / total_applications * 100)|round }}%{% else %}0%{% endif %};"
+            ></div>
+        </div>
+
+    </div>
+
+
+    <div class="status-item">
+
+        <div class="status-label">
+            <span>Selected</span>
+            <strong>{{ selected }}</strong>
+        </div>
+
+        <div class="progress-bar">
+            <div
+                class="progress-fill selected-bar"
+                style="width: {% if total_applications > 0 %}{{ (selected / total_applications * 100)|round }}%{% else %}0%{% endif %};"
+            ></div>
+        </div>
+
+    </div>
+
+
+    <div class="status-item">
+
+        <div class="status-label">
+            <span>Rejected</span>
+            <strong>{{ rejected }}</strong>
+        </div>
+
+        <div class="progress-bar">
+            <div
+                class="progress-fill rejected-bar"
+                style="width: {% if total_applications > 0 %}{{ (rejected / total_applications * 100)|round }}%{% else %}0%{% endif %};"
+            ></div>
+        </div>
+
+    </div>
+
+</div>
+
+
+    
+
+    </main>
+
+</body>
+
+</html>

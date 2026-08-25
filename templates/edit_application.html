@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Application | JobTrack</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+    <div class="logo">
+        Job<span>Track</span>
+    </div>
+
+    <button
+        type="button"
+        class="menu-toggle"
+        id="menu-toggle"
+        aria-label="Toggle navigation"
+    >
+        ☰
+    </button>
+
+    <div class="nav-links" id="nav-links">
+
+        <a href="{{ url_for('dashboard') }}">
+            Dashboard
+        </a>
+
+        <a href="{{ url_for('applications') }}">
+            Applications
+        </a>
+
+        <a href="{{ url_for('logout') }}" class="login-btn">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+    <main class="form-page">
+
+        <div class="form-container">
+
+            <div class="form-header">
+
+                <h1>Edit Job Application</h1>
+
+                <p>
+                    Update your application details.
+                </p>
+
+            </div>
+
+
+            <form method="POST" id="application-form">
+
+                <div class="form-group">
+
+                    <label for="company">
+                        Company *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="company"
+                        name="company"
+                        value="{{ application.company }}"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="role">
+                        Job Role *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="role"
+                        name="role"
+                        value="{{ application.role }}"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="location">
+                        Location
+                    </label>
+
+                    <input
+                        type="text"
+                        id="location"
+                        name="location"
+                        value="{{ application.location or '' }}"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="salary">
+                        Salary
+                    </label>
+
+                    <input
+                        type="text"
+                        id="salary"
+                        name="salary"
+                        value="{{ application.salary or '' }}"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="job_url">
+                        Job URL
+                    </label>
+
+                    <input
+                        type="url"
+                        id="job_url"
+                        name="job_url"
+                        value="{{ application.job_url or '' }}"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="status">
+                        Application Status
+                    </label>
+
+                    <select
+                        id="status"
+                        name="status"
+                    >
+
+                        <option value="Applied"
+                            {% if application.status == "Applied" %}selected{% endif %}>
+                            Applied
+                        </option>
+
+                        <option value="Assessment"
+                            {% if application.status == "Assessment" %}selected{% endif %}>
+                            Assessment
+                        </option>
+
+                        <option value="Interview"
+                            {% if application.status == "Interview" %}selected{% endif %}>
+                            Interview
+                        </option>
+
+                        <option value="Selected"
+                            {% if application.status == "Selected" %}selected{% endif %}>
+                            Selected
+                        </option>
+
+                        <option value="Rejected"
+                            {% if application.status == "Rejected" %}selected{% endif %}>
+                            Rejected
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="applied_date">
+                        Applied Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="applied_date"
+                        name="applied_date"
+                        value="{{ application.applied_date or '' }}"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="interview_date">
+                        Interview Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="interview_date"
+                        name="interview_date"
+                        value="{{ application.interview_date or '' }}"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="notes">
+                        Notes
+                    </label>
+
+                    <textarea
+                        id="notes"
+                        name="notes"
+                        rows="5"
+                    >{{ application.notes or '' }}</textarea>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <a
+                        href="{{ url_for('applications') }}"
+                        class="secondary-btn"
+                    >
+                        Cancel
+                    </a>
+
+                    <button
+                        type="submit"
+                        class="primary-btn"
+                    >
+                        Update Application
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </main>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>

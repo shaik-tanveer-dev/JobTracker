@@ -1,0 +1,5 @@
+.env
+jobtrack.db
+venv/
+__pycache__/
+*.pyc

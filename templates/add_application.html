@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Add Application | JobTrack</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+    <div class="logo">
+        Job<span>Track</span>
+    </div>
+
+    <button
+        type="button"
+        class="menu-toggle"
+        id="menu-toggle"
+        aria-label="Toggle navigation"
+    >
+        ☰
+    </button>
+
+    <div class="nav-links" id="nav-links">
+
+        <a href="{{ url_for('dashboard') }}">
+            Dashboard
+        </a>
+
+        <a href="{{ url_for('applications') }}">
+            Applications
+        </a>
+
+        <a href="{{ url_for('logout') }}" class="login-btn">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+    <main class="form-page">
+
+        <div class="form-container">
+
+            <div class="form-header">
+
+                <h1>Add Job Application</h1>
+
+                <p>
+                    Add the details of the job you applied for.
+                </p>
+
+            </div>
+
+
+            <form method="POST" id="application-form">
+
+
+                <!-- Company -->
+
+                <div class="form-group">
+
+                    <label for="company">
+                        Company *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="company"
+                        name="company"
+                        placeholder="e.g. TCS"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Role -->
+
+                <div class="form-group">
+
+                    <label for="role">
+                        Job Role *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="role"
+                        name="role"
+                        placeholder="e.g. Python Developer"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Location -->
+
+                <div class="form-group">
+
+                    <label for="location">
+                        Location
+                    </label>
+
+                    <input
+                        type="text"
+                        id="location"
+                        name="location"
+                        placeholder="e.g. Hyderabad"
+                    >
+
+                </div>
+
+
+                <!-- Salary -->
+
+                <div class="form-group">
+
+                    <label for="salary">
+                        Salary
+                    </label>
+
+                    <input
+                        type="text"
+                        id="salary"
+                        name="salary"
+                        placeholder="e.g. 4 LPA"
+                    >
+
+                </div>
+
+
+                <!-- Job URL -->
+
+                <div class="form-group">
+
+                    <label for="job_url">
+                        Job URL
+                    </label>
+
+                    <input
+                        type="url"
+                        id="job_url"
+                        name="job_url"
+                        placeholder="https://example.com/job"
+                    >
+
+                </div>
+
+
+                <!-- Status -->
+
+                <div class="form-group">
+
+                    <label for="status">
+                        Application Status
+                    </label>
+
+                    <select
+                        id="status"
+                        name="status"
+                    >
+
+                        <option value="Applied">
+                            Applied
+                        </option>
+
+                        <option value="Assessment">
+                            Assessment
+                        </option>
+
+                        <option value="Interview">
+                            Interview
+                        </option>
+
+                        <option value="Selected">
+                            Selected
+                        </option>
+
+                        <option value="Rejected">
+                            Rejected
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Applied Date -->
+
+                <div class="form-group">
+
+                    <label for="applied_date">
+                        Applied Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="applied_date"
+                        name="applied_date"
+                    >
+
+                </div>
+
+
+                <!-- Interview Date -->
+
+                <div class="form-group">
+
+                    <label for="interview_date">
+                        Interview Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="interview_date"
+                        name="interview_date"
+                    >
+
+                </div>
+
+
+                <!-- Notes -->
+
+                <div class="form-group">
+
+                    <label for="notes">
+                        Notes
+                    </label>
+
+                    <textarea
+                        id="notes"
+                        name="notes"
+                        rows="5"
+                        placeholder="Add interview notes, recruiter details, etc."
+                    ></textarea>
+
+                </div>
+
+
+                <!-- Buttons -->
+
+                <div class="form-actions">
+
+                    <a
+                        href="{{ url_for('applications') }}"
+                        class="secondary-btn"
+                    >
+                        Cancel
+                    </a>
+
+                    <button
+                        type="submit"
+                        class="primary-btn"
+                    >
+                        Save Application
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </main>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>
