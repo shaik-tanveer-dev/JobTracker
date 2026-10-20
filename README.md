@@ -97,3 +97,23 @@ JobTrack/
 │       └── script.js
 │
 └── venv/
+
+
+---
+
+###  Installation & Local Setup
+
+**1. Clone the repository**
+```bash
+git clone https://github.com/shaik-tanveer-dev/jobtrack.git
+cd jobtrack2. Create virtual environmentbashpython -m venv venv
+venv\Scripts\activate3. Install dependenciesbashpip install -r requirements.txt4. Run the appbashpython app.pyApp runs at http://127.0.0.1:5000🚀 DeploymentLive on Render FREE tier: https://jobtracker-1-0jse.onrender.comTo deploy your own:Push to GitHubGo to render.com -> New Web Service -> Connect repoBuild: pip install -r requirements.txtStart: gunicorn app:appDeploy📖 How to UseRegister on Live DemoLoginAdd job applicationsUpdate status on interview callsSearch and filter to track progress👨‍💻 AuthorShaik TanveerGitHub: https://github.com/shaik-tanveer-dev/Portfolio: https://github.com/shaik-tanveer-dev/Location: Guntur, Andhra Pradesh, IndiaProject: JobTrack📄 LicenseMIT License⭐Star this repo if you found it useful!javascript
+---
+
+Done! Now just:
+
+1. Go to your repo `jobtrack` on GitHub
+2. Click `Add file -> Create new file`
+3. Name: `README.md`
+4. Paste this full content
+5. Commit
